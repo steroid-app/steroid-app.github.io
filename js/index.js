@@ -16,7 +16,7 @@ window.onload = function(){
                     });
                     response.status = 200 ? response = true : response = false;
                 } catch {
-                    response = {error: steroid.errors.offline}
+                    response = {error: steroid.errors.offline, code: 0}
                 }
             }
             return response;
@@ -237,7 +237,7 @@ window.onload = function(){
                 document.getElementById("email-forgot-warning").classList.remove("is-hidden");
                 document.getElementById("submit-forgot-button").classList.remove("is-loading");
                 document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
-                displayNotification(response);
+                response.code != 401 ? displayNotification(response) : false;
             } else {
                 document.getElementById("submit-forgot-button").classList.replace("is-danger","is-success");
                 document.getElementById("submit-forgot-button").classList.remove("is-loading");
