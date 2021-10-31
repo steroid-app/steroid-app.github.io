@@ -2,27 +2,30 @@ window.onload = function(){
 
     const url = window.location.search;
     const ticket = url.split('?ticket=').pop();
-    if (ticket == ""){
-        window.location.replace("/");
-    }
+    ticket == "" ? window.location.replace("/") : false;
 
     const steroid = {
+        // CORE VARIABLES
+        url: 'https://steroidapp.ddns.net/',
+        header: {'Content-Type': 'application/x-www-form-urlencoded'},
+        errors: {
+            offline: "Ooops, seems like Steroid's server is offline or under maintenance! Come back in a few minutes."
+        },
         recovery: async function(user_id, password, ticket, response){
             await fetch(steroid.url+"recovery", {
                 method: "POST",
                 headers: steroid.header,
                 body: "user_id="+user_id+"&password="+password+"&ticket="+ticket,
-            }).then(response => response.json()).then(data => {
-                response = data;
-            }).catch(error => {
-                error = {error: "Ooops, seems like Steroid's server is offline or under maintenance! Come back in a few minutes."}
-                displayNotification(error);
-            })
+            }).then(res => {
+                switch(res.status){
+                    case 200: response = {success: "Your password has been changed."}; break;
+                    case 401: response = {error: "Email invalid, try again.", code: 401}; break;
+                    case 429: response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429}; break;
+                    case 500: response = {error: "Internal server error, please contact with technical support.", code: 500}; break;
+                }
+            }).catch(response = {error: steroid.errors.offline});
             return response;
         },
-        // CORE VARIABLES
-        url: 'https://steroidapp.ddns.net/api/',
-        header: {'Content-Type': 'application/x-www-form-urlencoded'}
     }
 
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
