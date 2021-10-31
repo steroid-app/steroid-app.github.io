@@ -2,7 +2,7 @@ window.onload = function(){
 
     const url = window.location.search;
     let ticket = url.split('?ticket=').pop();
-    //ticket == "" ? window.location.replace("/") : false;
+    ticket == "" ? window.location.replace("/") : false;
 
     const steroid = {
         // CORE VARIABLES
@@ -18,9 +18,9 @@ window.onload = function(){
                 body: "user_id="+user_id+"&password="+password+"&ticket="+ticket,
             }).then(res => {
                 switch(res.status){
-                    case 200: response = {success: "Your password has been changed."}; break;
-                    case 401: response = {error: "Email invalid, try again.", code: 401}; break;
-                    case 429: response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429}; break;
+                    case 200: response = {success: "Your password has been changed, redirecting in a few seconds..."}; break;
+                    case 401: response = {error: "Email or password invalid, try again.", code: 401}; break;
+                    case 429: response = {error: "Too many recovery attempts, come back in 24 hours.", code: 429}; break;
                     case 500: response = {error: "Internal server error, please contact with technical support.", code: 500}; break;
                 }
             }).catch(response = {error: steroid.errors.offline});
@@ -89,6 +89,9 @@ window.onload = function(){
                         document.getElementById("submit-recovery-button").classList.remove("is-loading");
                         document.getElementById("submit-recovery-button").classList.replace("is-danger", "is-success");
                         displayNotification(response);
+                        setTimeout(() => {
+                            window.location.replace("/#login");
+                        }, 3000);
                     }
                 } else {
                     document.getElementById("password-repeat-check").classList.add("is-hidden");
