@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#ff4141">
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <script src="js/dashboard.js"></script>
+    <title>Dashboard - Steroid</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-logo navbar-item"><img src="images/isotype.svg" width="48" height="48"></a>
+        </div>
+        <div id="navbarHome" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a id="close-session-button" class="button is-danger"><strong>Close session</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="main-element">
+        <div id="tiles" class="tile is-ancestor">
+            <div class="tile is-vertical is-half" style="overflow: hidden">
+                <div class="tile">
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification box is-dark">
+                            <p class="title">Settings</p>
+                            <hr class="navbar-divider">
+                            <div class="content is-medium">
+                                <h3>Details</h3>
+                                <div id="user-container"><b>Username:</b><span id="username-data"></span></div>
+                                <div id="ip-container"><b>IP:</b><span id="ip-data"></span></div>
+                                <div id="wallpaper-token-container">
+                                    <div><b>Wallpaper Token:</b></div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p class="control has-icons-left">
+                                                    <span class="icon is-left"><i class="fas fa-key"></i></span>
+                                                    <input title="Wallpaper Token" id="wallpaper-token-input" class="input has-background-black-ter has-text-white" type="text" placeholder="Wallpaper Token" autocomplete="off" readonly>
+                                                </p>
+                                            </td>
+                                            <td class="column-center">
+                                                <span id="wallpaper-token-reset-button" class="icon is-right has-background-black-ter"><i class="fas fa-redo"></i></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <a id="display-user-fields" class="button is-text is-dark has-text-grey-light is-fullwidth off">Display User Details</a>
+                                <hr class="navbar-divider">
+                                <h3>Integration</h3>
+                                <table>
+                                    <tr>
+                                        <td class="connection-name"><div class="content is-medium"><h6>Spotify:</h6></div></td>
+                                        <td>
+                                            <div class="connection-status">
+                                                <button id="connect-spotify-button" class="button is-success">Connect</button>
+                                                <div id="connect-spotify-status">
+                                                    <div class="control">
+                                                        <div class="tags has-addons are-medium">
+                                                            <i class="tag fas fa-check is-success"></i>
+                                                            <span class="text tag is-success">Connected</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td><div class="content is-medium"><h6>Discord API:</h6></div></td>
+                                        <td>
+                                            <div class="connection-status">
+                                                <div class="control">
+                                                    <div class="tags has-addons are-medium">
+                                                        <span class="tag is-info">Soon</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td><div class="content is-medium"><h6>Desktop App:</h6></div></td>
+                                        <td>
+                                            <div class="connection-status">
+                                                <div id="connect-desktop-status-on">
+                                                    <div class="control">
+                                                        <div class="tags has-addons are-medium">
+                                                            <i class="tag fas fa-check is-success"></i>
+                                                            <span class="text tag is-success">Connected</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="connect-desktop-status-off">
+                                                    <div class="control">
+                                                        <div class="tags has-addons are-medium">
+                                                            <i class="tag fas fa-times is-danger"></i>
+                                                            <span class="text tag is-danger">Disconnected</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="control">
+                                                        <div class="tags has-addons are-medium">
+                                                            <span class="tag is-info">Soon</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr class="navbar-divider">
+                                <h3>Weather</h3>
+                                <div class="content is-medium">
+                                    <div id="weather-fields" class="field">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p class="control has-icons-left">
+                                                        <span class="icon is-left"><i class="fas fa-key"></i></span>
+                                                        <input id="weather-api-key-input" class="input has-background-black-ter has-text-white" type="password" placeholder="Weather API Key" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" onblur="this.setAttribute('readonly','');">
+                                                    </p>
+                                                </td>
+                                                <td class="column-center">
+                                                    <span id="weather-api-show-button" class="icon is-right has-background-black-ter"><i class="fas fa-eye-slash"></i></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p class="control has-icons-left">
+                                                        <span class="icon is-left"><i class="fas fa-map-marker-alt"></i></span>
+                                                        <input id="weather-city-input" class="input has-background-black-ter has-text-white" type="text" placeholder="Country, State/Region, City" autocomplete="off">
+                                                    </p>
+                                                </td>
+                                                <td class="column-center">
+                                                    <span id="weather-city-show-button" class="icon is-right has-background-black-ter has-text-grey-light"><i class="fas fa-eye"></i></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <a id="save-weather" class="button is-danger is-fullwidth">Save Weather</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer notification is-dark">
+        <div class="content has-text-centered has-text-white">
+            <p>
+                <strong>Steroid</strong> by <a href="https://n0xt.github.io">N0XT</a>. The source code of Steroid and this website is licensed
+                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+    <div id="notification">
+        <div id="notification-container" class="notification is-danger is-light">
+            <button id="notification-close-button" class="delete"></button>
+            <div id="notification-content" class="content">
+                <h2 id="notification-header" class="has-text-danger"></h2>
+                <p id="notification-text" class="subtitle"></p>
+                <p></p>
+            </div>
+          </div>
+    </div>
+</body>
+</html>

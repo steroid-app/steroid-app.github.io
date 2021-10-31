@@ -1,0 +1,341 @@
+:root {
+    --navbar-item-hover-color: red;
+}
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    text-rendering: optimizeLegibility;
+    color: #cfcfcf;
+    background-color: white;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: none;
+}
+.button.is-danger {
+    background-color: #f43737;
+}
+.opacity-animation-display {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1 !important;
+}
+.fa-check::before{
+    color: #48c774;
+}
+
+/*
+    Navbar
+*/
+.navbar {
+    background-color: transparent;
+}
+.navbar-item img {
+    max-height: 100%;
+}
+.navbar-burger {
+    height: auto;
+}
+
+/*
+    Main Section
+*/
+.main-section {
+    margin-top: calc(26vh - 30px);
+    margin-bottom: calc(26vh - 30px);
+    height: calc(100vh - 28vh - 30px);
+}
+#welcome-text {
+    margin: auto;
+}
+.banner-column {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+}
+.download-check .check {
+    vertical-align: inherit;
+}
+.download-check .check .button {
+    margin-left: 1rem;
+}
+.download-check .check .button .icon {
+    margin-top: 0.3rem;
+    margin-left: 0.5rem;
+}
+.tos-button {
+    white-space: normal;
+    margin-left: -10px;
+}
+#welcome-login {
+    width: auto;
+    margin: auto;
+    padding: 0px 30px;
+}
+#welcome-register {
+    margin: auto;
+    padding: 0px 30px;
+}
+#submit-login-button, #submit-register-button {
+    font-size: 1.1rem;
+}
+#login-request-warning {
+    text-align: center;
+}
+#forgot-password {
+    text-align: center;
+    color: #737373;
+    font-size: 1rem;
+}
+#forgot-password:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+#forgot-password:active {
+    color: #999999;
+}
+
+/*
+    SHOWCASE SECTION
+*/
+#info-section {
+    margin: 0px 5%;
+}
+#info-section .column .content {
+    padding: 100px 0px;
+}
+#showcase-section {
+    margin-bottom: calc(8vh - 30px);
+}
+#showcase-title {
+    padding-top: 8vh;
+}
+#showcase-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+#showcase-section .box {
+    display: inline-block;
+    padding: 40px 30px;
+    padding-bottom: 40px;
+    min-width: 350px;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 30px;
+}
+#showcase-section .box i {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+#showcase-section .text-column {
+    padding-left: 10px;
+}
+#showcase-section .button.is-danger {
+    background-color: rgb(250, 15, 62);
+}
+.fa-align-center, .fa-book, .fa-cogs, .fa-laptop, .fa-microchip, .fa-spotify, .fa-cloud-sun, .fa-newspaper, .fa-icons {
+    font-size: 3.6rem;
+    color: rgb(255, 89, 123);
+}
+.fa-newspaper {
+    transform: scaleY(1.2);
+}
+#send-to-doc {
+    margin-bottom: 20vh;
+}
+#send-to-doc a {
+    text-decoration: underline;
+    color:rgb(250, 15, 62);
+}
+#send-to-doc a:hover {
+    color: rgb(255, 121, 148);
+}
+#welcome-forgot {
+    width: auto;
+    margin: auto;
+}
+
+/*
+    NOTIFICATION
+*/
+#notification {
+    position: absolute;
+    top: 0px;
+    z-index: 9999;
+    background-color: #000000bb;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#notification .notification {
+    max-width: 640px;
+    margin: auto;
+    margin-top: 20%;
+}
+
+
+
+/*
+    FOOTER
+*/
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: white;
+    z-index: 8;
+}
+
+@media screen and (max-width: 1024px) {
+    .main-section .columns {
+        flex-direction: column;
+    }
+    .main-section .columns .column {
+        width: 70%;
+        text-align: center;
+    }
+    .banner-column {
+        margin: auto;
+    }
+    #welcome-text .content h1 {
+        font-size: 2rem;
+    }
+    #welcome-text .content p {
+        font-size: 1.25rem;
+    }
+    #welcome-text table {
+        margin: auto;
+        font-size: 1.25rem;
+    }
+    .navbar, .navbar-end, .navbar-menu, .navbar-start {
+        align-items: stretch;
+        display: flex;
+    }
+    .navbar-end {
+        justify-content: flex-end;
+        margin-left: auto;
+    }
+    .navbar-menu {
+        flex-grow: 1;
+        flex-shrink: 0;
+        background-color: #fff;
+        box-shadow: none;
+    }
+    .navbar-burger {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .main-section {
+        margin-top: 10vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-section {
+        margin-top: 10vw;
+        height: 70vh;
+    }
+    #welcome-text {
+        width: 100%;
+    }
+    #welcome-text .content {
+        text-align: center;
+    }
+    #welcome-text .content h1 {
+        font-size: 2rem;
+    }
+    #welcome-text .content p {
+        font-size: 1.25rem;
+    }
+    #welcome-text table {
+        font-size: 1.25rem;
+    }
+    #send-to-doc {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 0% 8%;
+    }
+    #send-to-doc a {
+        font-weight: 600;
+        border-radius: 4px;
+        padding-top: 0px;
+    }
+    #welcome-register {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-section {
+        margin-top: 5vh;
+        height: 64vh;
+    }
+    #welcome-text .content h1 {
+        font-size: 1.5rem;
+        padding-bottom: 20px;
+    }
+    #welcome-text .content p {
+        font-size: 1rem;
+    }
+    #welcome-text table .button{
+        font-size: 1rem;
+    }
+    #showcase-title h1{
+        font-size: 1.5rem;
+    }
+    footer .content {
+        font-size: 0.8rem;
+    }
+    #welcome-register {
+        width: 100%;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .main-section {
+        height: auto;
+    }
+
+    footer .content {
+        font-size: 0.8rem;
+    }
+    #send-to-doc a {
+        font-weight: 600;
+        color: white;
+        border-radius: 4px;
+        padding-top: 0px;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-width: 1025px) {
+    .main-section {
+        margin-top: calc(26vh - 30px);
+    }
+    #send-to-doc a {
+        font-weight: 600;
+        background-color: white;
+        color: rgb(250, 15, 62);
+        border-radius: 0px;
+        padding: 0px;
+    }
+}
+  

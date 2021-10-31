@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#ff4141">
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/recovery.css">
+    <script src="js/recovery.js"></script>
+    <title>Password Reset - Steroid</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-logo navbar-item" href="/"><img src="images/isotype.svg" width="48" height="48"></a>
+            <a id="navbar-burger" role="button" class="navbar-burger has-dropdown" aria-label="menu" aria-expanded="false" data-target="navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    </nav>
+    <section id="main-section" class="section main-section">
+        <div id="welcome-recovery" class="column info-column request-column is-6 is-offset-one-third">
+            <div class="content is-medium">
+                <h1>Create a new password</h1>
+                <p>Remember to take note of your new password, so you don't lose it again.</p>
+                <form id="recovery-form">
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input id="email-recovery" class="input" type="email" placeholder="Email" autocomplete="off" required>
+                            <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                            <span id="email-recovery-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                        </p>
+                    </div>
+                    <p id="email-recovery-warning" class="help is-danger is-hidden">This email isn't valid.</p>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input id="password-recovery" class="input" type="password" placeholder="Password" autocomplete="off" required>
+                            <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                            <span id="password-recovery-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                        </p>
+                    </div>
+                    <p id="password-recovery-warning" class="help is-danger is-hidden">This password needs to be at least 8 characters long.</p>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input id="password-repeat" class="input" type="password" placeholder="Repeat your password" autocomplete="off" required>
+                            <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                            <span id="password-repeat-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                        </p>
+                    </div>
+                    <p id="password-repeat-warning" class="help is-danger is-hidden">This password isn't the same as the first one.</p>
+                    <div class="field">
+                        <p class="control"><button id="submit-recovery-button" type="submit" class="button is-danger is-fullwidth">Create new password</button></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Steroid</strong> by <a href="https://n0xt.github.io">N0XT</a>. The source code of Steroid and this website is licensed
+                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+    <div id="notification">
+        <div id="notification-container" class="notification is-danger is-light">
+            <button id="notification-close-button" class="delete"></button>
+            <div id="notification-content" class="content">
+                <h2 id="notification-header" class="has-text-danger"></h2>
+                <p id="notification-text" class="subtitle"></p>
+                <p></p>
+            </div>
+          </div>
+    </div>
+</body>
+</html>

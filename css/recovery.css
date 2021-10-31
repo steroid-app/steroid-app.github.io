@@ -1,0 +1,168 @@
+:root {
+    --navbar-item-hover-color: red;
+}
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    text-rendering: optimizeLegibility;
+    color: #cfcfcf;
+    background-color: white;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.button.is-danger {
+    background-color: #f43737;
+}
+.opacity-animation-display {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1 !important;
+}
+.fa-check::before{
+    color: #48c774;
+}
+
+/*
+    Navbar
+*/
+.navbar {
+    background-color: transparent;
+}
+.navbar-link:not(.is-arrowless)::after {
+    border-color: red;
+}
+a.navbar-item:hover {
+    color: red;
+}
+.navbar-item:hover, .navbar-item a:hover {
+    color: red;
+}
+.navbar-dropdown a.navbar-item:hover {
+    color: red;
+}
+.navbar-item img {
+    max-height: 100%;
+}
+.navbar-burger {
+    height: auto;
+}
+
+/*
+    Main Section
+*/
+.main-section {
+    margin-top: calc(26vh - 30px);
+    height: calc(100vh - 28vh - 30px);
+}
+#welcome-recovery {
+    margin: auto;
+    padding: 0px 30px;
+    opacity: 1;
+}
+#submit-recovery-button {
+    font-size: 1.1rem;
+}
+
+/*
+    NOTIFICATION
+*/
+#notification {
+    position: absolute;
+    top: 0px;
+    z-index: 9999;
+    background-color: #000000bb;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#notification .notification {
+    max-width: 640px;
+    margin: auto;
+    margin-top: 20%;
+}
+
+
+
+/*
+    FOOTER
+*/
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: white;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar-logo {
+        display: none !important;
+    }
+    .main-section .columns {
+        flex-direction: column;
+    }
+    .main-section .columns .column {
+        width: 70%;
+        text-align: center;
+    }
+    #welcome-recovery {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .main-section {
+        margin-top: 10vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-section {
+        margin-top: 10vw;
+        height: 70vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-section {
+        margin-top: 5vh;
+        height: 64vh;
+    }
+    footer .content {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .main-section {
+        margin-top: 10vw;
+        height: auto;
+    }
+
+    footer .content {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-width: 1025px) {
+    .main-section {
+        margin-top: calc(26vh - 30px);
+        height: calc(100vh - 28vh - 30px);
+    }
+}

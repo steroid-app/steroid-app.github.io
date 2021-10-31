@@ -1,0 +1,268 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#ff4141">
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="js/index.js"></script>
+    <title>Steroid - Wallpaper Engine Web Extension</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-logo navbar-item" href="/"><img src="images/isotype.svg" width="48" height="48"></a>
+        </div>
+        <div id="navbarHome" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a id="login-button" class="button is-danger"><strong>Log In</strong></a>
+                        <a id="register-button" class="button is-light has-text-grey">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section id="main-section" class="section main-section">
+        <div id="welcome-container" class="columns">
+            <div class="column banner-column opacity-animation-display is-half has-text-centered">
+              <img id="steroid-banner-image" class="steroid-banner" src="images/banner.svg" alt="STEROID" width="500">
+            </div>
+            <div id="welcome-text" class="column opacity-animation-display info-column is-two-fifths">
+                <div class="content is-medium">
+                    <h1>Wallpaper Engine web extension, running on steroids.</h1>
+                    <p>Steroid is a simple web app, that packs all the necessary features to create your own awesome wallpapers and share them with the world.</p>
+                </div>
+                <table class="download-check">
+                    <tr>
+                        <td><button class="button is-medium is-danger">Download</button></td>
+                        <td class="check"><a href="#showcase-title" class="button is-medium">Check it's functions<span class="icon"><i class="fas fa-chevron-right"></i></span></a></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="welcome-login" class="column info-column request-column is-5 is-offset-one-third is-hidden">
+                <div class="content is-medium">
+                    <h1>Login with your account</h1>
+                    <p>Get instant access to your control panel and information section.</p>
+                    <form id="login-form">
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input id="email-login" class="input" type="email" placeholder="Email" required>
+                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                                <span id="email-login-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                            </p>
+                        </div>
+                        <p id="email-login-warning" class="help is-danger is-hidden">This email isn't valid.</p>
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input id="password-login" class="input" type="password" placeholder="Password" required>
+                                <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                                <span id="password-login-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                            </p>
+                        </div>
+                        <p id="password-login-warning" class="help is-danger is-hidden">This password needs to be at least 8 characters long.</p>
+                        <p id="login-request-warning" class="help is-danger is-hidden">Invalid email or password, try again.</p>
+                        <div class="field">
+                            <p class="control"><button id="submit-login-button" type="submit" class="button is-danger is-fullwidth">Login</button></p>
+                        </div>
+                    </form>
+                    <p id="forgot-password">I forgot my password</p>
+                </div>
+            </div>
+            <div id="welcome-register" class="column info-column request-column is-5 is-offset-one-third is-hidden">
+                <div class="content is-medium">
+                    <h1>Create a new account</h1>
+                    <p>Create a new account to access online based features such as news, market and cloud synchronization.</p>
+                    <form id="register-form">
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input id="email-register" class="input" type="email" placeholder="Email" autocomplete="off" required>
+                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                                <span id="email-register-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                            </p>
+                        </div>
+                        <p id="email-register-warning" class="help is-danger is-hidden">This email isn't valid or it's already in use.</p>
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input id="password-register" class="input" type="password" placeholder="Password" autocomplete="off" required>
+                                <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                                <span id="password-register-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                            </p>
+                        </div>
+                        <p id="password-register-warning" class="help is-danger is-hidden">This password needs to be at least 8 characters long.</p>
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input id="password-repeat" class="input" type="password" placeholder="Repeat your password" autocomplete="off" required>
+                                <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                                <span id="password-repeat-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                            </p>
+                        </div>
+                        <p id="password-repeat-warning" class="help is-danger is-hidden">This password isn't the same as the first one.</p>
+                        <div class="field">
+                            <p class="control"><button id="submit-register-button" type="submit" class="button is-danger is-fullwidth">Register</button></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="welcome-forgot" class="column info-column request-column is-5 is-hidden">
+                <div class="content is-medium">
+                    <h1>Recover your account</h1>
+                    <p>We will send a recovery link to your email, so you can restore your password.</p>
+                    <form id="forgot-form">
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input id="email-forgot" class="input" type="email" placeholder="Email" autocomplete="off" required>
+                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                                <span id="email-forgot-check" class="icon is-small is-right is-hidden"><i class="fas fa-check"></i></span>
+                            </p>
+                        </div>
+                        <p id="email-forgot-warning" class="help is-danger is-hidden">This email isn't valid</p>
+                        <div class="field">
+                            <p class="control"><button id="submit-forgot-button" type="submit" class="button is-danger is-fullwidth">Send Recovery Email</button></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+    </section>
+    <section id="showcase-section" class="section">
+        <div id="showcase-title" class="content has-text-centered">
+            <h1>All the features you would ever need, in one single extension</h1>
+        </div>
+        <div id="showcase-container">
+            <div class="box">
+                <table>
+                    <tr>
+                        <td><i class="far fa-newspaper"></i></td>
+                        <td rowspan="2" style="border-left: 20px solid transparent">
+                            <div class="content">
+                                <h4>Newsletter</h4>
+                                <p>Get instant access to our news section and enjoy reading the topics you want.</p>
+                                <a class="button is-danger">Give it a try</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tr>
+                        <td><i class="fab fa-spotify"></i></td>
+                        <td></td>
+                        <td rowspan="2" style="border-left: 20px solid transparent">
+                            <div class="content">
+                                <h4>Spotify</h4>
+                                <p>Shuffle with your playback activity by just syncing your account with Steroid, it's easy and free.</p>
+                                <a class="button is-danger">Sync your account</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tr>
+                        <td><i class="fas fa-cloud-sun"></i></td>
+                        <td rowspan="2" style="border-left: 20px solid transparent">
+                            <div class="content">
+                                <h4>Weather Forecast</h4>
+                                <p>Don't forget your umbrella, access to your current location's weather and details whenever you need.</p>
+                                <a class="button is-danger">Will it rain today?</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tr>
+                        <td><i class="fas fa-microchip"></i></td>
+                        <td rowspan="2" style="border-left: 20px solid transparent">
+                            <div class="content">
+                                <h4>Computer Metrics</h4>
+                                <p>Using our app, you will be able to know your CPU usage, RAM, hard drives, network and more.</p>
+                                <a class="button is-danger">Get your metrics now!</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tr>
+                        <td><i class="fas fa-laptop"></i></td>
+                        <td rowspan="2" style="border-left: 20px solid transparent">
+                            <div class="content">
+                                <h4>Execute Programs</h4>
+                                <p>Call all the programs you need, you can do so thanks to our app and internal API system.</p>
+                                <a class="button is-danger">Learn how to do so</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tr>
+                        <td><i class="fas fa-icons"></i></td>
+                        <td rowspan="2" style="border-left: 20px solid transparent">
+                            <div class="content">
+                                <h4>Icons</h4>
+                                <p>Desktop icons are awful, you can create your own and execute them natively within your wallpaper.</p>
+                                <a class="button is-danger">Simple and fun!</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tr>
+                        <td><i class="fas fa-cogs"></i></td>
+                        <td rowspan="2" style="border-left: 20px solid transparent">
+                            <div class="content">
+                                <h4>Your Settings Everywhere</h4>
+                                <p>By creating an account, your settings will be saved and applied on every wallpaper you have.</p>
+                                <a class="button is-danger">Check our ToS</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+    <div id="send-to-doc" class="content is-medium has-text-centered">
+        <span>If you want to know more, you can read Steroid's documentation by </span><a HREF="/docs">clicking here</a>.
+    </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Steroid</strong> by <a href="https://n0xt.github.io">N0XT</a>. The source code of Steroid and this website is licensed
+                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+    <div id="notification">
+        <div id="notification-container" class="notification is-danger is-light">
+            <button id="notification-close-button" class="delete"></button>
+            <div id="notification-content" class="content">
+                <h2 id="notification-header" class="has-text-danger"></h2>
+                <p id="notification-text" class="subtitle"></p>
+                <p></p>
+            </div>
+          </div>
+    </div>
+</body>
+</html>

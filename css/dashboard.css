@@ -1,0 +1,356 @@
+:root {
+    --navbar-item-hover-color: red;
+}
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
+}
+@keyframes glow {
+    from {border: 1px solid #4e4e4e;}
+    to {border: 1px solid #48c774;}
+}
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    text-rendering: optimizeLegibility;
+    color: #cfcfcf;
+    background-color: #4e4e4e;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+body {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.button.is-danger {
+    background-color: #f43737;
+}
+.opacity-animation-display {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1 !important;
+}
+
+.fa-check::before{
+    color: #48c774;
+}
+.fa-times::before{
+    color: #f43737;
+}
+
+.tag.fa-check::before{
+    color: white;
+}
+.tag.fa-times::before{
+    color: white;
+}
+.input {
+    border: 1px solid #4e4e4e;
+}
+
+.input::placeholder {
+    color: grey;
+}
+
+.icon.is-right:hover {
+    cursor: pointer;
+}
+
+.content.is-medium {
+    font-size: 1.1rem;
+}
+
+#dashboard-title {
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+#main-element {
+    margin: auto;
+    max-width: 640px;
+    margin-top: -1vh;
+}
+
+#tiles {
+    margin: 20px;
+    margin-top: 0px;
+    margin-bottom: 5vh;
+    max-width: 640px;
+}
+
+.tile.is-3 {
+    width: auto;
+}
+
+.tile .content {
+    margin-bottom: 1rem;
+}
+
+.tile .content div span {
+    margin-left: 0.35rem;
+}
+
+.notification {
+    padding: 2rem;
+}
+
+.content table {
+    width: auto;
+}
+
+.is-dark .content h6 {
+    color: rgb(255, 255, 255);
+}
+
+.is-dark .content h3 {
+    color: rgb(255, 255, 255);
+    margin-top: 0px;
+}
+
+.navbar-divider {
+    background-color: #4e4e4e;
+}
+
+.tile table {
+    margin-top: 0.75rem;
+    table-layout: fixed;
+}
+.tile table td {
+    border: 0px;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.tile table td.column-center {
+    width: 50px;
+}
+
+.tile table td .content{
+    margin: 0;
+}
+
+.tile table td .content h6{
+    margin: 0;
+}
+
+.tile table td button {
+    font-size: 1rem;
+    padding: 0.4rem 1.5rem;
+    padding-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+#wallpaper-token-container {
+    margin-bottom: 0.5rem;
+}
+
+#wallpaper-token-container table{
+    width: 100%;
+}
+
+#wallpaper-token-container table .column-center {
+    text-align: center;
+}
+
+#wallpaper-token-container table .column-center span {
+    padding: 1.18rem;
+    border: 1px solid #4e4e4e;
+    margin-left: 0px !important;
+    border-radius: 4px;
+}
+
+.connection-status {
+    margin-left: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.connection-status .text {
+    padding-left: 0px;
+    padding-bottom: 0.1rem;
+}
+
+#connect-spotify-status {
+    display: none;
+}
+
+#connect-spotify-button {
+    display: none;
+}
+
+#connect-desktop-status-on {
+    display: none;
+}
+#connect-desktop-status-off {
+    display: none;
+}
+
+#weather-fields {
+    margin-left: 4px;
+}
+
+#weather-fields table {
+    width: 100%;
+}
+
+#weather-fields table .column-center {
+    text-align: center;
+    font-size: 1rem;
+}
+
+#weather-fields table .column-center span {
+    padding: 1.18rem;
+    border: 1px solid #4e4e4e;
+    margin-left: 0px !important;
+    border-radius: 4px;
+}
+table .column-center span:hover {
+    border: 1px solid #aaaaaa;
+    background-color: #3f3f3f !important;
+    color: white;
+}
+
+#weather-tile .content .field .field-label {
+    padding-top: 0.22rem;
+    color: white;
+}
+#weather-tile .content .field .field-label .label {
+    color: white;
+}
+
+.control span.tag {
+    padding-bottom: 0.12rem;
+}
+
+.control .is-danger {
+    background-color: #f43737 !important;
+}
+
+.is-delete {
+    background-color: #2f2f2f !important;
+}
+
+.is-delete:hover {
+    background-color: #6f6f6f !important;
+}
+
+.tags .is-light {
+    background-color: #6f6f6f !important;
+    color: white !important;
+}
+
+.tags .is-light:hover {
+    cursor: pointer;
+    background-color: #2f2f2f !important;
+}
+
+/*
+    Navbar
+*/
+.navbar {
+    background-color: transparent;
+    display: flex;
+}
+.navbar-link:not(.is-arrowless)::after {
+    border-color: red;
+}
+a.navbar-item:hover {
+    color: red;
+}
+.navbar-item:hover, .navbar-item a:hover {
+    color: red;
+}
+.navbar-dropdown a.navbar-item:hover {
+    color: red;
+}
+.navbar-item img {
+    max-height: 100%;
+}
+#navbarHome {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+.navbar-end {
+    justify-content: flex-end;
+    display: flex;
+    margin-left: auto;
+}
+.navbar-end .navbar-item {
+    align-items: center;
+    display: flex;
+}
+.navbar-divider {
+    display: block;
+}
+
+
+
+/*
+    NOTIFICATION
+*/
+#notification {
+    position: absolute;
+    top: 0px;
+    z-index: 9999;
+    background-color: #000000bb;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#notification .notification {
+    max-width: 640px;
+    margin: auto;
+    margin-top: 20%;
+}
+
+/*
+    FOOTER
+*/
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: #4e4e4e;
+    margin-bottom: 0px !important;
+    z-index: 6;
+}
+
+.footer a {
+    color: #fd8282 !important;
+}
+
+.footer .content {
+    font-size: 0.8rem;
+}
+
+@media screen and (max-height: 860px){
+    #main-element {
+        margin-top: 6vh;
+        margin-bottom: 16vh;
+    }
+}
+
+@media screen and (max-width: 460px){
+    article .content {
+        font-size: 0.9rem !important;
+    }
+    #notification .notification {
+        margin: 0% 5%;
+        margin-top: 50%;
+    }
+}
