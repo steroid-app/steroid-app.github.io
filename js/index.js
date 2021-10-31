@@ -59,7 +59,6 @@ window.onload = function(){
                 headers: steroid.header,
                 body: "user_id="+user_id,
             }).then(res => {
-                console.log(res);
                 switch(res.status){
                     case 200: response = {success: "If your account has been registered, you will recieve an email in just a few minutes."}; break;
                     case 401: response = {error: "", code: 401}; break;

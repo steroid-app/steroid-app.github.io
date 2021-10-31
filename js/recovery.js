@@ -83,7 +83,7 @@ window.onload = function(){
                     document.getElementById("submit-recovery-button").classList.add("is-loading");
                     document.getElementsByTagName("body")[0].style.pointerEvents = "none";
                     let response = await steroid.recovery(emailRecovery.value, passwordRecovery.value, ticket);
-                    if (response.error != undefined){
+                    if (response.error !== undefined){
                         document.getElementById("email-recovery-check").classList.add("is-hidden");
                         emailRecovery.classList.remove("is-success");
                         emailRecovery.classList.add("is-danger");
@@ -91,7 +91,7 @@ window.onload = function(){
                         document.getElementById("submit-recovery-button").classList.remove("is-loading");
                         document.getElementById("submit-recovery-button").classList.add("is-danger");
                         document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
-                        displayNotification(response);
+                        response.code !== 401 ? displayNotification(response) : false;
                     } else {
                         document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
                         document.getElementById("submit-recovery-button").classList.remove("is-loading");
@@ -117,7 +117,7 @@ window.onload = function(){
 
     function displayNotification(text){
         if (text.error != undefined){
-            if (text.error.error_description != undefined){
+            if (text.error.error_description !== undefined){
                 notificationContainer.className = '';
                 notificationContainer.classList.add("notification","is-danger","is-light");
                 notificationHeader.className = '';
