@@ -17,6 +17,7 @@ window.onload = function(){
                 headers: steroid.header,
                 body: "user_id="+user_id+"&password="+password+"&ticket="+ticket,
             }).then(res => {
+                console.log(res);
                 switch(res.status){
                     case 200: response = {success: "Your password has been changed."}; break;
                     case 401: response = {error: "Email invalid, try again.", code: 401}; break;
