@@ -61,7 +61,7 @@ window.onload = function(){
                 body: "user_id="+user_id,
             }).then(res => {
                 switch(res.status){
-                    case 200: response = res.json(); break;
+                    case 200: response = {success: "If your account has been registered, you will recieve an email in just a few minutes."}; break;
                     case 401: response = {error: "", code: 401}; break;
                     case 429: response = {error: "Too many recovery attempts, come back in 24 hours.", code: 429}; break;
                 }
