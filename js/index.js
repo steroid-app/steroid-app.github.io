@@ -45,7 +45,6 @@ window.onload = function(){
                 headers: steroid.header,
                 body: "user_id="+user_id+"&password="+password,
             }).then(res => {
-                console.log(res.headers);
                 switch(res.status){
                     case 200: response = res.json(); break;
                     case 401: response = {error: "", code: 401}; break;
@@ -60,6 +59,7 @@ window.onload = function(){
                 headers: steroid.header,
                 body: "user_id="+user_id,
             }).then(res => {
+                console.log(res);
                 switch(res.status){
                     case 200: response = {success: "If your account has been registered, you will recieve an email in just a few minutes."}; break;
                     case 401: response = {error: "", code: 401}; break;
@@ -185,7 +185,7 @@ window.onload = function(){
                 document.getElementById("login-request-warning").classList.add("is-hidden");
                 document.getElementsByTagName("body")[0].style.pointerEvents = "none";
                 let response = await steroid.login(emailLogin.value, passwordLogin.value);
-                if (response.error != undefined){
+                if (response.error !== undefined){
                     document.getElementById("email-login-check").classList.add("is-hidden");
                     emailLogin.classList.remove("is-success");
                     emailLogin.classList.add("is-danger");
@@ -196,7 +196,7 @@ window.onload = function(){
                     submitLogin.classList.add("is-danger");
                     document.getElementById("login-request-warning").classList.remove("is-hidden");
                     document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
-                    response.code != 401 ? displayNotification(response) : false;
+                    response.code !== 401 ? displayNotification(response) : false;
                 } else {
                     document.getElementById("submit-login-button").classList.remove("is-loading");
                     sessionStorage.setItem("user_id", emailLogin.value);
@@ -230,14 +230,14 @@ window.onload = function(){
             document.getElementById("submit-forgot-button").classList.add("is-loading");
             document.getElementsByTagName("body")[0].style.pointerEvents = "none";
             let response = await steroid.recovery(emailForgot.value);
-            if (response.error != undefined){
+            if (response.error !== undefined){
                 emailForgot.classList.remove("is-success");
                 emailForgot.classList.add("is-danger");
                 document.getElementById("email-forgot-check").classList.add("is-hidden");
                 document.getElementById("email-forgot-warning").classList.remove("is-hidden");
                 document.getElementById("submit-forgot-button").classList.remove("is-loading");
                 document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
-                response.code != 401 ? displayNotification(response) : false;
+                response.code !== 401 ? displayNotification(response) : false;
             } else {
                 document.getElementById("submit-forgot-button").classList.replace("is-danger","is-success");
                 document.getElementById("submit-forgot-button").classList.remove("is-loading");
@@ -274,7 +274,7 @@ window.onload = function(){
                     document.getElementById("submit-register-button").classList.add("is-loading");
                     document.getElementsByTagName("body")[0].style.pointerEvents = "none";
                     let response = await steroid.register(emailRegister.value, passwordRegister.value);
-                    if (response.error != undefined){
+                    if (response.error !== undefined){
                         document.getElementById("email-register-check").classList.add("is-hidden");
                         emailRegister.classList.remove("is-success");
                         emailRegister.classList.add("is-danger");
@@ -282,7 +282,7 @@ window.onload = function(){
                         document.getElementById("submit-register-button").classList.remove("is-loading");
                         document.getElementById("submit-register-button").classList.add("is-danger");
                         document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
-                        response.code != 401 ? displayNotification(response) : false;
+                        response.code !== 401 ? displayNotification(response) : false;
                     } else {
                         document.getElementById("submit-register-button").classList.remove("is-loading");
                         sessionStorage.setItem("user_id", emailRegister.value);
@@ -312,7 +312,7 @@ window.onload = function(){
     }
 
     function displayNotification(text){
-        if (text.error != undefined){
+        if (text.error !== undefined){
             if (text.error.error_description != undefined){
                 notificationContainer.className = '';
                 notificationContainer.classList.add("notification","is-danger","is-light");
