@@ -145,7 +145,7 @@ After this, you must login with your account.
 ## Authentication
 
 ### **Account verification:**
-You don't have to constantly keep logging in with your password each time you install a wallpaper, that's why there is a **`session_token`** for you. By calling **`steroid.verification()`**, Steroid will automatically exchange your **`wallpaper_token`** and **`user_id`** for you, to return new changes made in your account.
+You don't have to constantly keep logging in with your password each time you install a wallpaper, that's why there is a **`wallpaper_token`**. By calling **`steroid.verification()`**, Steroid will automatically exchange your **`wallpaper_token`** and **`user_id`** for you, to return new changes made in your account.
 ```javascript
 let login_response = await steroid.verification();
 ```
@@ -156,7 +156,6 @@ response: {
     "user_location": "City, State, Country", // Your location
     "spotify_token":"AQDoLvTCZeSHhNlTPoc...", // Spotify API refresh token
     "weather_api":"5Hs9Ys...", // AccuWeather API key
-    "wallpaper_token":"9d5453128b..." // Your session token
 }
 ```
 
@@ -172,16 +171,18 @@ Steroid's Weather Forecast is super simple and easy to use. It has been implemen
 
 ##
 
-### **Saving your location and token:**
-Saves your current location and token in Steroid's server, and it's automatically applied on any other wallpaper you have.
+### **Weather API check:**
+Weather check function takes care of all the steps needed to check if you logged into your Steroid account.
 
 ```javascript
-let save_weather = await steroid.weather.save(location, weather_api_token);
+var check = await steroid.weather.check();
 ```
-
-**A normal response should be:**
-
-If your data was successfully saved, Steroid will return a **`true`** response, if not, **`false`**.
+**And it's response should be:**
+```json
+response: {
+    success: true
+}
+```
 
 #
 
@@ -191,9 +192,8 @@ Requests current weather information around your location.
 let current_weather = await steroid.weather.current();
 ```
 
-> You must have already saved your location and API token.
-
-> By default, this function will prevent you from calling it in less than an hour if you already recieved information from the server.
+> You must have already saved your location and API token on Steroid's webpage.
+> By default, this function will prevent you from calling it in less than an hour.
 
 #
 
@@ -203,8 +203,7 @@ Requests an extense weather forecast of your current location.
 let forecast_weather = await steroid.weather.forecast();
 ```
 
-> You must have already saved your location and API token.
-
+> You must have already saved your location and API token on Steroid's webpage.
 > By default, Steroid will request a weather forecast of 5 days, and only twice per day.
 
 #
@@ -215,8 +214,21 @@ Steroid connects directly to Spotify, working with it's API and retrieving every
 
 ##
 
+### **Spotify API check:**
+Spotify check function takes care of all the steps needed to check if you logged into your Steroid account.
+
+```javascript
+var check = await steroid.spotify.check();
+```
+**And it's response should be:**
+```json
+response: {
+    success: true
+}
+```
+
 ### **Token Refresh:**
-Now, with your credentials exchange already made in Steroid's Dashboard, you will find your **`refresh_token`** in your browser local storage. But, access tokens don't last for long and it's just used to request data from Spotify servers. That's why this function exists, to refresh it when needed and get a new one using our **`refresh_token`** as ticket.
+Now, with your credentials exchange already made in Steroid's Dashboard, your Spotify **`refresh_token`** will be stored in our server. This special token can be used to request something called **`access_token`** that allows users to request information from Spotify's servers, and this fuction requests it for you.
 
 ```javascript
 var new_access_token = await steroid.spotify.refresh();
@@ -225,7 +237,7 @@ var new_access_token = await steroid.spotify.refresh();
 **And by doing so, we should get this response:**
 ```json
 response: {
-    "access_token": "new_access_token"
+    success: true
 }
 ```
 Now we can use our brand new **`access_token`** to request data from Spotify servers whenever we want.
@@ -242,49 +254,55 @@ With this function, you will be able to request playback details, information an
 **Returning this when a new song shows up:**
 ```json
   {
-      song: {
-          album: "album_title",
-          artist: "artist_name",
-          cover: "cover_image_url",
-          duration: {
-              ms: 99999999999, // Song duration in miliseconds
-              string: "99:99" // Song duration in minutes:seconds format
-          },
-          name: "song_name",
-          progress: {
-              ms: 000000000, // Song progress in miliseconds
-              string: "00:00" // Song progress in minutes:seconds format
-          }
-          stauts: "play"/"pause".
-      }
+    song: {
+        name: "song_name",
+        album: "album_title",
+        artist: "artist_name",
+        cover: {
+            url: "cover_image_url",
+            base64: "Base64 cover image"
+        },
+        duration: {
+            ms: 99999999999, // Song duration in miliseconds
+            time: "99:99" // Song duration in minutes:seconds format
+        },
+        progress: {
+            ms: 000000000, // Song progress in miliseconds
+            time: "00:00" // Song progress in minutes:seconds format
+        }
+    }
   }
 ```
 
-If you don't need or want to process your song duration and progress, you can easily turn it off by doing this:
+**And it will continue to output just the progress until the song changes:**
+```json
+  {
+    progress: {
+        ms: 000000000, // Song progress in miliseconds
+        time: "00:00" // Song progress in minutes:seconds format
+    }
+  }
+```
+
+If you don't need or want to process your song duration and progress into **`minutes:seconds`** format, you can easily turn it off by doing this:
 
 ```javascript
-  steroid_options.spotify.process_timeStamp = false;
+  steroid.spotify.spotify.options.process_timeStamp = false;
+```
+> **Note:** Keep in mind that by turning off **`process_timeStamp`**, you will be saving up some resources in low-end computers.
+
+If you don't want to output any progress whatsoever, you can actually disable the progress output and wait for a new song:
+
+```javascript
+  steroid.spotify.spotify.options.progress = false;
 ```
 **And you should get this in return:**
 ```json
   {
-      song: {
-          album: "album_title",
-          artist: "artist_name",
-          cover: "cover_image_url",
-          duration: {
-              ms: 99999999999, // Song duration in miliseconds
-          },
-          name: "song_name",
-          progress: {
-              ms: 000000000, // Song progress in miliseconds
-          }
-          stauts: "play"/"pause".
-      }
+      is_playing: true
   }
 ```
-
-> **Note:** Keep in mind that by turning off **`process_timeStamp`**, you will be saving up some performance and resources in low-end computers.
+> **Note:** Keep in mind that by turning off **`progress`**, you will be saving up a lot of resources in low-end computers.
 
 #
 
