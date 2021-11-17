@@ -288,16 +288,8 @@ window.onload = function(){
                         sessionStorage.setItem("session_token", response.session_token);
                         sessionStorage.setItem("user_ip",response.user_ip);
                         sessionStorage.setItem("newsletter_topics",JSON.stringify(response.newsletter_topics));
-                        if (response.user_location == "null"){
-                            sessionStorage.setItem("user_location",undefined);
-                        } else {
-                            sessionStorage.setItem("user_location",response.user_location);
-                        }
-                        if (response.weather_api == "null"){
-                            sessionStorage.setItem("weather_api",undefined);
-                        } else {
-                            sessionStorage.setItem("weather_api",response.weather_api);
-                        }
+                        sessionStorage.setItem("user_location",response.user_location);
+                        sessionStorage.setItem("weather_api",response.weather_api);
                         sessionStorage.setItem("spotify_token",response.spotify_token);
                         window.location.replace("/dashboard.html");
                     }

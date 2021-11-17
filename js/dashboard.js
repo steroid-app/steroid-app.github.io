@@ -224,15 +224,15 @@ window.onload = function(){
                     window.location.replace("/dashboard.html");
                 }
             }
-            if (sessionStorage.getItem("spotify_token") != ""){
+            if (sessionStorage.getItem("spotify_token") !== "" && sessionStorage.getItem("spotify_token") !== "null"){
                 document.getElementById("connect-spotify-status").style.display = "block";
             } else {
                 document.getElementById("connect-spotify-button").style.display = "block";
             }
-            if (sessionStorage.getItem("weather_api") != ""){
+            if (sessionStorage.getItem("weather_api") != "" && sessionStorage.getItem("weather_api") !== "null"){
                 weatherAPIInput.value = sessionStorage.getItem("weather_api");
             }
-            if (sessionStorage.getItem("user_location") != ""){
+            if (sessionStorage.getItem("user_location") != "" && sessionStorage.getItem("user_location") !== "null"){
                 weatherCityInput.value = sessionStorage.getItem("user_location");
             }
             document.getElementsByTagName("body")[0].style.display = "block";
