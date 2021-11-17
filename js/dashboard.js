@@ -217,7 +217,7 @@ window.onload = function(){
             document.getElementById("wallpaper-token-input").value = wallpaper_token;
             let url = window.location.search;
             let splitted_url = url.split('?code=').pop();
-            if (splitted_url != ""){
+            if (splitted_url !== ""){
                 response = await steroid.spotify.request(splitted_url);
                 if (response.refresh_token !== undefined){
                     sessionStorage.setItem("spotify_token",response.refresh_token);
@@ -229,10 +229,10 @@ window.onload = function(){
             } else {
                 document.getElementById("connect-spotify-button").style.display = "block";
             }
-            if (sessionStorage.getItem("weather_api") != "" && sessionStorage.getItem("weather_api") !== "null"){
+            if (sessionStorage.getItem("weather_api") !== "" && sessionStorage.getItem("weather_api") !== "null"){
                 weatherAPIInput.value = sessionStorage.getItem("weather_api");
             }
-            if (sessionStorage.getItem("user_location") != "" && sessionStorage.getItem("user_location") !== "null"){
+            if (sessionStorage.getItem("user_location") !== "" && sessionStorage.getItem("user_location") !== "null"){
                 weatherCityInput.value = sessionStorage.getItem("user_location");
             }
             document.getElementsByTagName("body")[0].style.display = "block";
