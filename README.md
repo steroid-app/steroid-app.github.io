@@ -1,7 +1,7 @@
 # Steroid, Wallpaper Engine web extension.
 
 ## ⚠️ Warning:
-STEROID IS STILL ON DEVELOPMENT, AND IT WON'T BE COMPLETELY PUBLISHED UNTIL A COMPLETE AND FULLY FUNCTIONAL ALPHA VERSION IS PRESENTED. FOR NOW, ONLY WEATHER AND SPOTIFY FEATURES WILL BE ONLINE FOR TESTING PURPOSES.
+STEROID IS STILL ON DEVELOPMENT, ONLY ALPHA TESTING HAS BEEN RELEASED.
 
 ## What is Steroid
 Steroid is a simple web app, that packs all the necessary features to create your own awesome wallpapers and share them with the world, adding new functionalities to Wallpaper Engine and it's own features to the table; creating a hybrid between native and web support.
@@ -29,13 +29,18 @@ Steroid web app uses a number of open source projects and code of our own to wor
       - [Login.](#login-with-your-account)
       - [Verification.](#account-verification)
     - [Weather.](#weather-api)
-      - [Saving your Location and Token.](#saving-your-location-and-token)
-      - [Current Weather.](#current-weather)
-      - [Forecast.](#forecast-weather)
+      - [Settings and Customization.](#settings-and-customization)
+      - [Current Conditions.](#current-conditions)
+      - [Forecast Information.](#forecast-information)
+      - [City Code.](#city-code)
+      - [Timer Reset.](#timer-reset)
+      - [Set Forecast Days.](#set-forecast-days)
+      - [Weather Icons.](#weather-conditions-icons)
     - [Spotify.](#spotify-api)
-      - [Credential Exchange.](#credential-exchange)
-      - [Token Refresh.](#token-refresh)
-      - [Playback Information.](#playback-information)
+      - [Settings and Cache.](#spotify-settings-and-cache)
+      - [Login.](#login-with-spotify)
+      - [Playback information.](#playback-information)
+      - [Modify playback state.](#modify-playback-state)
     - [News.](#news-api)
   - [Steroid Desktop App.](#steroid-desktop-app)
   - [Credits](#credits)
@@ -57,6 +62,7 @@ Steroid web app uses a number of open source projects and code of our own to wor
 - [ ] Newsletter page.
 - [ ] News and topics reader.
 - [ ] Performance tweaks.
+- [ ] Desktop App release.
 
 #
 
@@ -81,7 +87,7 @@ Steroid's browser version only requires a simple JS file, called **`steroid.js`*
   ```html
   <head>
     <...> Other stuff </...>
-    <script src="steroid.js"></script> <!-- LIKE THIS -->
+    <script src="steroid-core.js"></script> <!-- LIKE THIS -->
     <script src="your_script_here.js"></script>
   </head>
   ```
@@ -123,7 +129,10 @@ There is no need to create complex functions or return a massive amount of data 
 - Request limits are needed. First for user safety, and second to avoid bottlenecks in our server. Remember that this project is still on development, and some functions are still experimental. This is why, you must think how are you going to implement and develop your wallpaper.
 
 **Error handling:**
-- Error handling is on your own, there won't be a premade error handling functions. This is because we only provide a library to work with and simplify your users interaction.
+- Every function will return an error if something didn't work correctly:
+```javascript
+  {error: "This is an error"}
+```
 
 #
 
@@ -134,9 +143,9 @@ Calling our API and knowing Steroid's status is as simply as this:
 ```
 This call will return a simple boolean: 
 ```javascript
-true / false
+{ success: true }
 ```
-This response will give you and idea if the service is running or not. If you don't recieve a response, it means our server is temporarily offline or under maintenance.
+This response will give you and idea if the service is running or not.
 
 After this, you must login with your account.
 
@@ -167,26 +176,39 @@ Steroid's Weather API works directly with **[AccuWeather API](https://developer.
 
 Steroid's Weather Forecast is super simple and easy to use. It has been implemented like this so you don't have to worry about forgetting your AccuWeather API token. We can store them in our server and it will be applied on any wallpaper you have that runs on Steroid.
 
+It's highly customizable and easy to work with, you can access to it's memory, settings and cache to retrieve data or modify anything you would need.
+
 > You can check the AccuWeather API Documentation by clicking: **[here](https://developer.accuweather.com/apis)**.
 
 ##
 
-### **Weather API check:**
-Weather check function takes care of all the steps needed to check if you logged into your Steroid account.
-
+### **Settings and customization:**
+First of all, you have multiple settings to customize for your own project:
 ```javascript
-var check = await steroid.weather.check();
-```
-**And it's response should be:**
-```json
-response: {
-    success: true
+settings: {
+    active: true, // If you want to keep in memory if it's turned on or not.
+    current: true, // If you want to active your current weather
+    forecast: true, // If you want to activate your forecast
+    forecast_days: 3, // Days of forecast (Max 5)
+    convention: "Metric", // Metric / Fahrenheit
+    waitingTime: { // Both in ms
+        current: 3600000, // One hour
+        forecast: 14400000 // Four hours
+    }
 }
 ```
+All the settings mentioned previously can be edited like this:
+```javascript
+steroid.weather.settings.active = false;
+steroid.weather.settings.forecast_days = 5;
+```
+And the changes will apply the next time you run or execute the weather function.
+You can use this variables for your own project without any fear of breaking the code.
+For example, let's say you want to have a variable where you want to store if the weather is active or not, well, you can use **`steroid.weather.settings.active`** for that.
 
-#
+##
 
-### **Current Weather:**
+#### **Current conditions:**
 Requests current weather information around your location.
 ```javascript
 let current_weather = await steroid.weather.current();
@@ -195,114 +217,181 @@ let current_weather = await steroid.weather.current();
 > You must have already saved your location and API token on Steroid's webpage.
 > By default, this function will prevent you from calling it in less than an hour.
 
-#
+##
 
-### **Forecast Weather:**
+#### **Forecast information:**
 Requests an extense weather forecast of your current location.
 ```javascript
 let forecast_weather = await steroid.weather.forecast();
 ```
 
 > You must have already saved your location and API token on Steroid's webpage.
-> By default, Steroid will request a weather forecast of 5 days, and only twice per day.
+> By default, Steroid will request a weather forecast of 3 days, and it will prevent you from calling it in less than four hours.
+
+##
+
+#### **City code:**
+```javascript
+let city_code_change = await steroid.weather.cityCode();
+```
+This function stores your city code in your **`localStorage`**, and return:
+```javascript
+{success: true}
+```
+Only when the code has been saved.
+
+> You must have already saved your location and API token on Steroid's webpage.
+
+##
+
+#### **Timer reset:**
+This function will reset steroid's internal timer, to allow you to request new weather details. It will simply return a **`true/false`** response.
+```javascript
+let timer_reset = await steroid.weather.timerReset();
+```
+
+##
+
+#### **Set forecast days:**
+This function will change steroid's forecast limit. It will simply return a **`true/false`** response.
+```javascript
+let timer_reset = await steroid.weather.setForecastDays(days);
+```
+
+##
+
+#### **Weather condition icons:**
+Accessing to this variable will give you all the icon codes and names used by AccuWeather.
+```javascript
+let icons = steroid.weather.icons;
+let rain_icon = steroid.weather.icons[18];
+```
 
 #
 
 ## Spotify API
 
-Steroid connects directly to Spotify, working with it's API and retrieving everything the user needs with each call. This method requires you to be logged in with your account to store your **`refresh_token`**.
+To use it, you must first sign in your account, linking Steroid with Spotify in the Dashboard. This way, your **`refresh_token`** will be stored in our server, and you won't have to follow an overcomplicated process.
+
+This special token, can be used to request something called **`access_token`**, that is being used by different users to request information from Spotify's servers, modify your playback state and get it's status.
+
+Steroid connects directly to Spotify, working with it's API and retrieving everything the user needs with each call. This method requires you to be logged in with your account to store your **`refresh_token`** and other variables.
+
+> It's highly recommended to login with Steroid's account first, and then login with Spotify to use all the needed functions.
 
 ##
 
-### **Spotify API check:**
-Spotify check function takes care of all the steps needed to check if you logged into your Steroid account.
+#### **Spotify settings and cache:**
 
+It's highly recommended to use this settings and test them on different environments:
 ```javascript
-var check = await steroid.spotify.check();
-```
-**And it's response should be:**
-```json
-response: {
-    success: true
+settings: {
+    active: true, // If you want to keep track of Spotify activation status (Same as weather)
+    progress: true, // Output progress or not
+    create_cover: true, // Create a base64 cover to output on song change
+    process_timeStamp: true // Process timestamp to mm:ss
 }
 ```
-
-### **Token Refresh:**
-Now, with your credentials exchange already made in Steroid's Dashboard, your Spotify **`refresh_token`** will be stored in our server. This special token can be used to request something called **`access_token`** that allows users to request information from Spotify's servers, and this fuction requests it for you.
-
+If you have been reading this guide, it means that you already know how to activate/deactivate this functions. In any case you didn't, you can do it by:
 ```javascript
-var new_access_token = await steroid.spotify.refresh();
+steroid.spotify.settings.active = false;
+steroid.spotify.settings.progress = false;
 ```
-
-**And by doing so, we should get this response:**
-```json
-response: {
-    success: true
-}
-```
-Now we can use our brand new **`access_token`** to request data from Spotify servers whenever we want.
-
-#
-
-### **Playback Information:**
-With this function, you will be able to request playback details, information and current playing song.
-
+And, if you want to access it's cache memory for any desired reason, you can do so by:
 ```javascript
-  var playback_information = await steroid.spotify.playback();
+let spotify_cache = steroid.spotify.cache;
+```
+##
+
+#### **Login with Spotify:**
+To login with Spotify and get all the needed tokens to use it, you must access by calling this function:
+```javascript
+let spotify_login = await steroid.spotify.access();
+```
+And as response, you should get:
+```javascript
+{success: true}
 ```
 
-**Returning this when a new song shows up:**
+##
+
+#### **Playback information:**
+Get all the playback information needed by calling:
+```javascript
+var playback_info = await steroid.spotify.playback();
+```
 ```json
-  {
-    song: {
-        name: "song_name",
-        album: "album_title",
-        artist: "artist_name",
-        cover: {
-            url: "cover_image_url",
-            base64: "Base64 cover image"
+{
+    "song": {
+        "name": "Differently",
+        "album": "Differently",
+        "artist": "Marin Hoxha",
+        "cover": {
+            "url": "https://i.scdn.co/image/ab67616d00001e02723ec05ad325de4ce3d034b3",
+            "base64": "data:image/png;base64, ..."
         },
-        duration: {
-            ms: 99999999999, // Song duration in miliseconds
-            time: "99:99" // Song duration in minutes:seconds format
+        "duration": {
+            "ms": 183350,
+            "time": "3:03"
         },
-        progress: {
-            ms: 000000000, // Song progress in miliseconds
-            time: "00:00" // Song progress in minutes:seconds format
+        "progress": {
+            "ms": 0,
+            "time": 0
         }
     }
-  }
+}
 ```
-
-**And it will continue to output just the progress until the song changes:**
+And when the song continues, instead of sending everything again, it will send you the progress:
 ```json
-  {
-    progress: {
-        ms: 000000000, // Song progress in miliseconds
-        time: "00:00" // Song progress in minutes:seconds format
-    }
-  }
+"progress": {
+    "ms": 0,
+    "time": 0
+}
 ```
 
-If you don't need or want to process your song duration and progress into **`minutes:seconds`** format, you can easily turn it off by doing this:
+**If you don't need or want to process your song duration and progress into **`minutes:seconds`** format, you can easily turn it off by doing this:**
 
 ```javascript
-  steroid.spotify.spotify.options.process_timeStamp = false;
+  steroid.spotify.settings.process_timeStamp = false;
 ```
 > **Note:** Keep in mind that by turning off **`process_timeStamp`**, you will be saving up some resources in low-end computers.
 
-If you don't want to output any progress whatsoever, you can actually disable the progress output and wait for a new song:
+**If you don't want to output any progress whatsoever, you can actually disable the progress output and wait for a new song:**
 
 ```javascript
-  steroid.spotify.spotify.options.progress = false;
+  steroid.spotify.settings.progress = false;
 ```
-**And you should get this in return:**
+**And you should get one of these in return:**
 ```json
-  {
-      is_playing: true
-  }
+{play: true}, // If the song is reproducing now
+{pause: true}, // If the song has been paused
+{stopped: true} // If Spotify has been stopped completely
+
 ```
 > **Note:** Keep in mind that by turning off **`progress`**, you will be saving up a lot of resources in low-end computers.
+
+##
+
+#### **Modify playback state:**
+
+**Play:**
+> Coming in the next update
+####
+**Pause:**
+> Coming in the next update
+####
+**Stop:**
+> Coming in the next update
+####
+**Next:**
+> Coming in the next update
+####
+**Previous:**
+> Coming in the next update
+####
+**Get collection:**
+> Coming in the next update
+####
 
 #
 
