@@ -180,6 +180,7 @@ window.onload = function(){
         weatherSaveButton.classList.add("is-loading");
         document.getElementsByTagName("body")[0].style.pointerEvents = "none";
         if (weatherAPIInput.value !== "" && weatherCityInput.value !== "" && weatherAPIInput.value.length > 10 && weatherCityInput.value.length > 5){
+            weatherAPIInput.value = weatherAPIInput.value.replace(/[\t]/g, "");
             let response = await steroid.weather.update(weatherAPIInput.value, weatherCityInput.value);
             if (response.code == undefined){
                 displayNotification({success: "Weather settings have been saved."});
