@@ -209,7 +209,6 @@ body {
 }
 
 #refresh-spotify:hover {
-    border: 1px solid #aaaaaa;
     background-color: #3f3f3f !important;
     color: white;
     cursor: pointer;   
