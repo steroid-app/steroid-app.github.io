@@ -231,7 +231,7 @@ window.onload = function(){
                 }
             }
             if (sessionStorage.getItem("spotify_token") !== "" && sessionStorage.getItem("spotify_token") !== "null"){
-                document.getElementById("connect-spotify-status").style.display = "block";
+                document.getElementById("connect-spotify-status").style.display = "flex";
             } else {
                 document.getElementById("connect-spotify-button").style.display = "block";
             }
