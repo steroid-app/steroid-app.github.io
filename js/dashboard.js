@@ -81,6 +81,7 @@ window.onload = function(){
     
     // Spotify Button
     const spotifyButton = document.getElementById("connect-spotify-button");
+    const refreshSpotify = document.getElementById("refresh-spotify");
 
     // Weather API
     const weatherAPIInput = document.getElementById("weather-api-key-input");
@@ -144,7 +145,12 @@ window.onload = function(){
     });
 
     spotifyButton.addEventListener("click", function(){
-        const spotifyScopes = "user-read-currently-playing user-read-playback-state user-modify-playback-state";
+        let spotifyScopes = "user-read-currently-playing user-read-playback-state user-modify-playback-state";
+        window.location.replace("https://accounts.spotify.com/authorize?client_id=ad98a226df0e41e6b00ca8fec9b022a3&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
+    });
+
+    refreshSpotify.addEventListener("click", function(){
+        let spotifyScopes = "user-read-currently-playing user-read-playback-state user-modify-playback-state";
         window.location.replace("https://accounts.spotify.com/authorize?client_id=ad98a226df0e41e6b00ca8fec9b022a3&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
     });
 

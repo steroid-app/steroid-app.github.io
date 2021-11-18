@@ -181,7 +181,8 @@ body {
 }
 
 #connect-spotify-status {
-    display: none;
+    display: flex;
+    align-items: center;
 }
 
 #connect-spotify-button {
@@ -193,6 +194,25 @@ body {
 }
 #connect-desktop-status-off {
     display: none;
+}
+
+#refresh-spotify {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    margin-left: 0.4rem;
+    background-color: #242424;
+    border: 1px solid #4e4e4e;
+    color: #4a4a4a;
+    padding-right: 0.4rem;
+    padding-left: 0.3rem;
+}
+
+#refresh-spotify:hover {
+    border: 1px solid #aaaaaa;
+    background-color: #3f3f3f !important;
+    color: white;
+    cursor: pointer;   
 }
 
 #weather-fields {
