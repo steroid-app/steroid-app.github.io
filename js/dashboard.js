@@ -66,7 +66,7 @@ window.onload = function(){
                 }).catch(response = {error: steroid.errors.offline});
                 return response;
             }
-        },
+        }
     }
 
     //Nav bar
@@ -226,10 +226,14 @@ window.onload = function(){
             let splitted_url = url.split('?code=').pop();
             if (splitted_url !== ""){
                 response = await steroid.spotify.request(splitted_url);
-                if (response.refresh_token !== undefined){
-                    sessionStorage.setItem("spotify_token",response.refresh_token);
-                    window.location.replace("/dashboard.html");
-                }
+                try {
+                    if (response.refresh_token !== undefined){
+                        sessionStorage.setItem("spotify_token",response.refresh_token);
+                        window.location.replace("/dashboard.html");
+                    } 
+                } catch {
+                    displayNotification(response);
+                }  
             }
             if (sessionStorage.getItem("spotify_token") !== "" && sessionStorage.getItem("spotify_token") !== "null"){
                 document.getElementById("connect-spotify-status").style.display = "flex";
@@ -249,8 +253,8 @@ window.onload = function(){
     }
 
     function displayNotification(text){
-        if (text.error != undefined){
-            if (text.error.error_description != undefined){
+        if (text.error !== undefined){
+            if (text.error.error_description !== undefined){
                 notificationContainer.className = '';
                 notificationContainer.classList.add("notification","is-danger","is-light");
                 notificationHeader.className = '';
