@@ -37,22 +37,17 @@ window.onload = function(){
         },
         spotify: {
             request: async function(code, response){
-                try {
-                    await fetch(steroid.url+"spotify/request", {
-                        method: "POST",
-                        headers: steroid.header,
-                        body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&code="+code,
-                    }).then(res => {
-                        switch(res.status){
-                            case 200: response = res.json(); break;
-                            case 401: response = {error: "", code: 401}; break;
-                            case 429: response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429}; break;
-                        }
-                    }).catch(response = {error: steroid.errors.offline});
-                    
-                } catch {
-                    response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429};
-                }
+                await fetch(steroid.url+"spotify/request", {
+                    method: "POST",
+                    headers: steroid.header,
+                    body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&code="+code,
+                }).then(res => {
+                    switch(res.status){
+                        case 200: response = res.json(); break;
+                        case 401: response = {error: "", code: 401}; break;
+                        case 429: response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429}; break;
+                    }
+                }).catch(response = {error: steroid.errors.offline});
                 return response;
             }
         },
@@ -235,7 +230,7 @@ window.onload = function(){
                     if (response.refresh_token !== undefined){
                         sessionStorage.setItem("spotify_token",response.refresh_token);
                         window.location.replace("/dashboard.html");
-                    } 
+                    }
                 } catch {
                     displayNotification(response);
                 }  
