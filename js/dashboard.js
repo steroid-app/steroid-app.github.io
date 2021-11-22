@@ -226,14 +226,12 @@ window.onload = function(){
             let splitted_url = url.split('?code=').pop();
             if (splitted_url !== ""){
                 response = await steroid.spotify.request(splitted_url);
-                try {
-                    if (response.refresh_token !== undefined){
-                        sessionStorage.setItem("spotify_token",response.refresh_token);
-                        window.location.replace("/dashboard.html");
-                    }
-                } catch {
+                if (response.refresh_token !== undefined){
+                    sessionStorage.setItem("spotify_token",response.refresh_token);
+                    window.location.replace("/dashboard.html");
+                } else {
                     displayNotification(response);
-                }  
+                }
             }
             if (sessionStorage.getItem("spotify_token") !== null && sessionStorage.getItem("spotify_token") !== "null"){
                 document.getElementById("connect-spotify-status").style.display = "flex";
