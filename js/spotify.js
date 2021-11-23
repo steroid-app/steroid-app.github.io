@@ -92,9 +92,8 @@ window.onload = function(){
                     "&response_type=code"+
                     "&scope=user-read-currently-playing&user-modify-playback-state"+
                     "&redirect_uri="+
-                    encodeURIComponent("http://localhost:5500/spotify.html");
+                    encodeURIComponent("https://steroid-app.github.io/spotify.html");
                 window.location.href = url;
-
             } else {
                 clientSecret.classList.remove("is-success");
                 clientSecret.classList.add("is-danger");
@@ -125,7 +124,6 @@ window.onload = function(){
 
     async function loadData(){
         let response = await steroid.verification();
-        console.log(response);
         if (response){
             document.getElementsByTagName("body")[0].style.display = "block";
             let url = window.location.search;
@@ -145,7 +143,7 @@ window.onload = function(){
                 }
             } 
         } else {
-            //clearSession();
+            clearSession();
         }
     }
 
