@@ -35,25 +35,6 @@ window.onload = function(){
             }).catch(response = {error: steroid.errors.offline});
             return response;
         },
-        spotify: {
-            request: async function(code, response){
-                return {error: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."}
-                /*
-                await fetch(steroid.url+"spotify", {
-                    method: "POST",
-                    headers: steroid.header,
-                    body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&code="+code,
-                }).then(res => {
-                    switch(res.status){
-                        case 200: response = res.json(); break;
-                        case 401: response = {error: "", code: 401}; break;
-                        case 429: response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429}; break;
-                    }
-                }).catch(response = {error: steroid.errors.offline});
-                return response;
-                */
-            }
-        },
         weather: {
             update: async function(weather_api_key, location, response){
                 await fetch(steroid.url+"weather", {
@@ -148,13 +129,13 @@ window.onload = function(){
     });
 
     spotifyButton.addEventListener("click", function(){
-        let spotifyScopes = "user-read-currently-playing user-read-playback-state user-modify-playback-state";
-        window.location.replace("https://accounts.spotify.com/authorize?client_id=ff7662e020874970a010173c20439c57&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
+        //window.location.replace("/spotify.html");
+        displayNotification({error: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
     });
 
     refreshSpotify.addEventListener("click", function(){
-        let spotifyScopes = "user-read-currently-playing user-read-playback-state user-modify-playback-state";
-        window.location.replace("https://accounts.spotify.com/authorize?client_id=ff7662e020874970a010173c20439c57&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
+        //window.location.replace("/spotify.html");
+        displayNotification({success: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
     });
 
     weatherAPIShowButton.addEventListener("click", function(){

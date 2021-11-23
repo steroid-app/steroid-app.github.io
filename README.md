@@ -43,6 +43,9 @@ Steroid web app uses a number of open source projects and code of our own to wor
       - [Modify playback state.](#modify-playback-state)
     - [News.](#news-api)
   - [Steroid Desktop App.](#steroid-desktop-app)
+  - [Tutorials.](#tutorials)
+    - [Spotify Setup.](#spotify-setup)
+    - [Weather Setup.](#weather-setup)
   - [Credits](#credits)
   - [License](#license)
 
@@ -414,6 +417,30 @@ This application will stay running on the background, waiting to be called since
 ### Desktop App Usage
 
 > For now this function isn't available, but it will be when finished.
+
+#
+
+## Tutorials
+
+### Spotify Setup
+
+- First, you have to access Steroid's Dashboard, by clicking [here](https://steroid-app.github.io/#login).
+- Then, click on "Connect" next to "Spotify" on the integration panel.
+- Login with Spotify.
+
+[*] Done! Spotify has been linked to your account, and should look like this now:
+
+[previewicon=25513858;sizeThumb,inline;sr6.png][/previewicon]
+
+[*] And turn on "[b]Spotify[/b]" now.
+
+[previewicon=25565778;sizeThumb,inline;sr8.png][/previewicon]
+
+[*] Now, you must activate "[b]Online Features[/b]".
+
+[previewicon=25514320;sizeThumb,inline;sr7.png][/previewicon]
+
+[*] Done, spotify activated!
 
 
 #
