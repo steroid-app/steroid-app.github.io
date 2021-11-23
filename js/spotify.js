@@ -125,6 +125,7 @@ window.onload = function(){
 
     async function loadData(){
         let response = await steroid.verification();
+        console.log(response);
         if (response){
             document.getElementsByTagName("body")[0].style.display = "block";
             let url = window.location.search;
@@ -144,7 +145,7 @@ window.onload = function(){
                 }
             } 
         } else {
-            clearSession();
+            //clearSession();
         }
     }
 
