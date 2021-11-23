@@ -37,7 +37,7 @@ window.onload = function(){
         },
         spotify: {
             request: async function(code, response){
-                return {error: "Spotify integration is currently disabled, manual method is going to be implemented."}
+                return {error: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."}
                 /*
                 await fetch(steroid.url+"spotify", {
                     method: "POST",
