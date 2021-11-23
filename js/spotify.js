@@ -33,7 +33,7 @@ window.onload = function(){
                     body:
                         "grant_type=authorization_code" +
                         "&code=" + code +
-                        "&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html"
+                        "&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fspotify.html"
                 }).then(res => res.json().then( data => {
                     if (data.refresh_token !== undefined){
                         response = {refresh_token: data.refresh_token};
