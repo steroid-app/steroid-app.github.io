@@ -37,7 +37,8 @@ window.onload = function(){
         },
         spotify: {
             request: async function(code, response){
-                await fetch(steroid.url+"spotify/request", {
+                return {error: "Spotify integration is temporarely disabled, try again in a few hours."};
+                /*await fetch(steroid.url+"spotify/request", {
                     method: "POST",
                     headers: steroid.header,
                     body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&code="+code,
@@ -48,7 +49,7 @@ window.onload = function(){
                         case 429: response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429}; break;
                     }
                 }).catch(response = {error: steroid.errors.offline});
-                return response;
+                return response;*/
             }
         },
         weather: {
