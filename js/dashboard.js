@@ -37,6 +37,8 @@ window.onload = function(){
         },
         spotify: {
             request: async function(code, response){
+                return {error: "Spotify integration is currently disabled, manual method is going to be implemented."}
+                /*
                 await fetch(steroid.url+"spotify", {
                     method: "POST",
                     headers: steroid.header,
@@ -49,6 +51,7 @@ window.onload = function(){
                     }
                 }).catch(response = {error: steroid.errors.offline});
                 return response;
+                */
             }
         },
         weather: {
