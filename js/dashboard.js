@@ -37,8 +37,7 @@ window.onload = function(){
         },
         spotify: {
             request: async function(code, response){
-                return {error: "Spotify integration is temporarely disabled, try again in a few hours."};
-                /*await fetch(steroid.url+"spotify/request", {
+                await fetch(steroid.url+"spotify", {
                     method: "POST",
                     headers: steroid.header,
                     body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&code="+code,
@@ -49,7 +48,7 @@ window.onload = function(){
                         case 429: response = {error: "Too many token refresh attempts, come back in 24 hours.", code: 429}; break;
                     }
                 }).catch(response = {error: steroid.errors.offline});
-                return response;*/
+                return response;
             }
         },
         weather: {
@@ -147,12 +146,12 @@ window.onload = function(){
 
     spotifyButton.addEventListener("click", function(){
         let spotifyScopes = "user-read-currently-playing user-read-playback-state user-modify-playback-state";
-        window.location.replace("https://accounts.spotify.com/authorize?client_id=ad98a226df0e41e6b00ca8fec9b022a3&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
+        window.location.replace("https://accounts.spotify.com/authorize?client_id=ff7662e020874970a010173c20439c57&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
     });
 
     refreshSpotify.addEventListener("click", function(){
         let spotifyScopes = "user-read-currently-playing user-read-playback-state user-modify-playback-state";
-        window.location.replace("https://accounts.spotify.com/authorize?client_id=ad98a226df0e41e6b00ca8fec9b022a3&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
+        window.location.replace("https://accounts.spotify.com/authorize?client_id=ff7662e020874970a010173c20439c57&response_type=code&redirect_uri=https%3A%2F%2Fsteroid-app.github.io%2Fdashboard.html&scopes="+encodeURIComponent(spotifyScopes)+"&show_dialog=false");
     });
 
     weatherAPIShowButton.addEventListener("click", function(){
