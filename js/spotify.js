@@ -16,7 +16,7 @@ window.onload = function(){
                     } else {
                         response = {error: data.error + ": " + data.error_description};
                     }
-                })).catch(response = {error: steroid.errors.offline});
+                })).catch(response = {error: "Ooops, seems like Steroid's server is offline or under maintenance! Come back in a few minutes."});
                 return response;
             }
         }
