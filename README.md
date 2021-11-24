@@ -431,46 +431,55 @@ Spotify manual mode is only for those who can't synchronize Steroid with their a
 #
 
 - > **Then, you must login on the Spotify Developers Dashboard.**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_1.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_1.png)
 
 #
 
 - > **Accept terms and conditions.**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_2.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_2.png)
 
 #
 
 - > **Once you logged in, click on "`Create An App`".**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_3.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_3.png)
 
 #
 
 - > **Fill the form with the app name you want, and it's description. Accept it's terms and conditions and click on "`Create`".**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_4.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_4.png)
 
 #
 - > **On the left side of the screen you are going to find your "`Client ID`" and "`Client Secret`" required on [Steroid's Spotify Dashboard](https://steroid-app.github.io/spotify.html). Copy them and paste it on the dashboard.**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_5.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_5.png)
 
 #
 
 - > **Then click on "`Edit Settings`".**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_6.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_6.png)
 
 #
 
 - > **And type the Redirect URIs of down below, click on "`Add`" and then on "`Save`".**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_7.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_7.png)
 
 #
 
 - > **And finally, click on "`Activate Integration`".**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_8.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_8.png)
 
 #
 
 - > **When it finishes, you will recieve your "`Refresh Token`".**
-  ![Spotify Dashboard Image](/images/spotify_dashboard_9.png)
+
+  > ![Spotify Dashboard Image](/images/spotify_dashboard_9.png)
 
 #
 
