@@ -48,9 +48,9 @@ window.onload = function(){
                         "Authorization": "Basic ZmY3NjYyZTAyMDg3NDk3MGEwMTAxNzNjMjA0MzljNTc6NzMwNmQ1ZGU0NWZjNGVlZDk0NDkzYjk3NTY0YmYxMTE="
                     },
                     body: "grant_type=authorization_code&code="+code+"&redirect_uri="+encodeURIComponent("https://steroid-app.github.io/dashboard.html")
-                }).then(res => res.json().then(async data => {
+                }).then(res => res.json().then(data => {
                     if (data.refresh_token !== undefined){
-                        response = await steroid.spotify.update(data.refresh_token);
+                        response = {refresh_token: data.refresh_token}
                     } else {
                         response = {error: data.error+": "+data.error_description};
                     }
@@ -174,10 +174,12 @@ window.onload = function(){
 
     spotifyButton.addEventListener("click", function(){
         //steroid.spotify.get_code();
+        displayNotification({success: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
     });
 
     refreshSpotify.addEventListener("click", function(){
-        //steroid.spotify.get_code();
+        steroid.spotify.get_code();
+        //displayNotification({success: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
     });
 
     weatherAPIShowButton.addEventListener("click", function(){
@@ -252,8 +254,11 @@ window.onload = function(){
             let splitted_url = url.split('?code=').pop();
             if (splitted_url !== ""){
                 response = await steroid.spotify.request(splitted_url);
-                if (response){
-                    displayNotification(response);
+                if (response.refresh_token !== undefined){
+                    response = await steroid.spotify.update(response.refresh_token);
+                    if (response){
+                        displayNotification(response);
+                    }
                 }
             }
             if (sessionStorage.getItem("spotify_token") !== null && sessionStorage.getItem("spotify_token") !== "null"){
