@@ -60,14 +60,13 @@
                   <span class="icon is-small is-left"><i class="fas fa-volume-up"></i></span>
                 </div>
               </div>
-              <p id="refresh-token-text" class="has-text-grey is-hidden">Done, you can copy and paste your <b class="has-text-success">Client ID</b>, <b class="has-text-success">Client Secret</b> and <b class="has-text-success">Refresh Token</b> in your wallpaper settings.</p>
               <a id="activate-spotify" class="button spotify-button is-success has-text-dark">Activate Integration</a>
               <a href="#" class="button is-ghost has-text-grey-light">How to setup your Spotify account</a>
             </div>
           </div>
         </div>
         <div id="right-column" class="column" style="border-left: 1px solid #4a4a4a;">
-          <div class="content">
+          <div id="first-content" class="content">
             <h1 class="green-title">Before you continue, you should know that</h1>
             <p class="has-text-grey">To integrate Spotify manually, it's required your:</p>
             <ul>
@@ -76,6 +75,10 @@
               <li title="To pause, play, stop and change the volume of your songs">Modify user playback state.</li>
             </ul>
             <p class="has-text-grey">This method doesn't store any of your data on Steroid's server.</p>
+          </div>
+          <div id="second-content" class="content is-hidden">
+            <h1 class="green-title">Success,</h1>
+            <p id="refresh-token-text" class="has-text-grey is-hidden">you can copy and paste your <b class="has-text-success">Client ID</b>, <b class="has-text-success">Client Secret</b> and <b class="has-text-success">Refresh Token</b> in your wallpaper settings.</p>
           </div>
         </div>
       </div>
