@@ -83,6 +83,7 @@ window.onload = function(){
                 refreshToken.classList.add("is-success");
                 document.getElementById("refresh-token-field").classList.remove("is-hidden");
                 document.getElementById("first-content").classList.add("is-hidden");
+                document.getElementById("how-to-setup").classList.add("is-hidden");
                 document.getElementById("second-content").classList.remove("is-hidden");
                 activateSpotify.classList.add("is-hidden");
             } else {
