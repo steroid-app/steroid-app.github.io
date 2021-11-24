@@ -78,6 +78,9 @@ window.onload = function(){
                 clientID.value = sessionStorage.getItem("clientID");
                 clientSecret.value = sessionStorage.getItem("clientSecret");
                 refreshToken.value = response.refresh_token;
+                clientID.classList.add("is-success");
+                clientSecret.classList.add("is-success");
+                refreshToken.classList.add("is-success");
                 document.getElementById("refresh-token-field").classList.remove("is-hidden");
                 document.getElementById("first-content").classList.add("is-hidden");
                 document.getElementById("second-content").classList.remove("is-hidden");
