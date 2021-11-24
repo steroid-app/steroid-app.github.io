@@ -61,7 +61,7 @@ window.onload = function(){
                 await fetch(steroid.url+"spotify", {
                     method: "PATCH",
                     headers: steroid.header,
-                    body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&spotify_refresh="+refresh_token
+                    body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&refresh_token="+refresh_token
                 }).then(res => {
                     switch (res.status){
                         case 201:
