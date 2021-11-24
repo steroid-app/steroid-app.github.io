@@ -26,15 +26,6 @@
     <div class="navbar-brand">
         <a class="navbar-logo navbar-item"><img src="images/isotype.svg" width="48" height="48"></a>
     </div>
-    <div id="navbarHome" class="navbar-menu">
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a id="dashboard-button" class="button is-success" href="/dashboard.html"><strong>Dashboard</strong></a>
-                </div>
-            </div>
-        </div>
-    </div>
 </nav>
   <section class="section is-large">
     <div class="container">
@@ -49,7 +40,7 @@
               <div class="field">
                 <label class="label has-text-grey-light">Client ID</label>
                 <div class="control has-icons-left">
-                  <input id="client-id" class="input" type="text" placeholder="Client ID" value="">
+                  <input id="client-id" class="input" type="text" placeholder="Client ID">
                   <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
                 </div>
                 <p id="client-id-help" class="help is-danger is-hidden">Insert a client ID to continue</p>
@@ -57,11 +48,19 @@
               <div class="field">
                 <label class="label has-text-grey-light">Client Secret</label>
                 <div class="control has-icons-left">
-                  <input id="client-secret" class="input" type="text" placeholder="Client Secret" value="">
+                  <input id="client-secret" class="input" type="text" placeholder="Client Secret">
                   <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
                 </div>
                 <p id="client-secret-help" class="help is-danger is-hidden">Insert a Client Secret to continue</p>
               </div>
+              <div id="refresh-token-field" class="field is-hidden">
+                <label class="label has-text-grey-light">Refresh Token</label>
+                <div class="control has-icons-left">
+                  <input id="refresh-token" class="input" type="text" placeholder="Refresh Token" readonly>
+                  <span class="icon is-small is-left"><i class="fas fa-volume-up"></i></span>
+                </div>
+              </div>
+              <p id="refresh-token-text" class="has-text-grey is-hidden">Done, you can copy and paste your <b class="has-text-success">Client ID</b>, <b class="has-text-success">Client Secret</b> and <b class="has-text-success">Refresh Token</b> in your wallpaper settings.</p>
               <a id="activate-spotify" class="button spotify-button is-success has-text-dark">Activate Integration</a>
               <a href="#" class="button is-ghost has-text-grey-light">How to setup your Spotify account</a>
             </div>
@@ -70,13 +69,13 @@
         <div id="right-column" class="column" style="border-left: 1px solid #4a4a4a;">
           <div class="content">
             <h1 class="green-title">Before you continue, you should know that</h1>
-            <p class="has-text-grey">To integrate Spotify with Steroid, it's required your:</p>
+            <p class="has-text-grey">To integrate Spotify manually, it's required your:</p>
             <ul>
               <li title="To display what you are listening to">Playback activity.</li>
               <li title="To give you a little bit of user information if you want it">Basic user information.</li>
               <li title="To pause, play, stop and change the volume of your songs">Modify user playback state.</li>
             </ul>
-            <p class="has-text-grey">Only your Spotify token will be stored in our servers, and nothing else.</p>
+            <p class="has-text-grey">This method doesn't store any of your data on Steroid's server.</p>
           </div>
         </div>
       </div>

@@ -35,6 +35,50 @@ window.onload = function(){
             }).catch(response = {error: steroid.errors.offline});
             return response;
         },
+        spotify: {
+            get_code: function(){
+                let url = "https://accounts.spotify.com/authorize?client_id=ff7662e020874970a010173c20439c57&response_type=code&scope=user-read-currently-playing&user-modify-playback-state&redirect_uri="+encodeURIComponent("https://steroid-app.github.io/dashboard.html");
+                window.location.href = url;
+            },
+            request: async function (code, response){
+                await fetch("https://accounts.spotify.com/api/token", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "Authorization": "Basic ZmY3NjYyZTAyMDg3NDk3MGEwMTAxNzNjMjA0MzljNTc6NzMwNmQ1ZGU0NWZjNGVlZDk0NDkzYjk3NTY0YmYxMTE="
+                    },
+                    body: "grant_type=authorization_code&code="+code+"&redirect_uri="+encodeURIComponent("https://steroid-app.github.io/dashboard.html")
+                }).then(res => res.json().then(async data => {
+                    if (data.refresh_token !== undefined){
+                        response = await steroid.spotify.update(data.refresh_token);
+                    } else {
+                        response = {error: data.error+": "+data.error_description};
+                    }
+                })).catch(response = {error: steroid.errors.offline});
+                return response;
+            },
+            update: async function(refresh_token, response){
+                await fetch(steroid.url+"spotify", {
+                    method: "PATCH",
+                    headers: steroid.header,
+                    body: "user_id="+sessionStorage.getItem("user_id")+"&session_token="+sessionStorage.getItem("session_token")+"&spotify_refresh="+refresh_token
+                }).then(res => {
+                    switch (res.status){
+                        case 201:
+                            response = {success: "Spotify has been integrated correctly."};
+                            sessionStorage.setItem("spotify_token", refresh_token);
+                            break;
+                        case 401:
+                            response = {error: "", code: 401};
+                            break;
+                        case 429:
+                            response = {error: "Too many Spotify integration attempts, come back in 24 hours.", code: 429};
+                            break;
+                    }
+                }).catch(response = {error: steroid.errors.offline});
+                return response;
+            }
+        },
         weather: {
             update: async function(weather_api_key, location, response){
                 await fetch(steroid.url+"weather", {
@@ -129,13 +173,11 @@ window.onload = function(){
     });
 
     spotifyButton.addEventListener("click", function(){
-        //window.location.replace("/spotify.html");
-        displayNotification({error: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
+        steroid.spotify.get_code();
     });
 
     refreshSpotify.addEventListener("click", function(){
-        //window.location.replace("/spotify.html");
-        displayNotification({success: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
+        steroid.spotify.get_code();
     });
 
     weatherAPIShowButton.addEventListener("click", function(){
@@ -210,10 +252,7 @@ window.onload = function(){
             let splitted_url = url.split('?code=').pop();
             if (splitted_url !== ""){
                 response = await steroid.spotify.request(splitted_url);
-                if (response.refresh_token !== undefined){
-                    sessionStorage.setItem("spotify_token",response.refresh_token);
-                    window.location.replace("/dashboard.html");
-                } else {
+                if (response){
                     displayNotification(response);
                 }
             }
