@@ -65,7 +65,7 @@ window.onload = function(){
                 }).then(res => {
                     switch (res.status){
                         case 201:
-                            response = {success: "Spotify has been integrated correctly."};
+                            response = {success: "Spotify has been integrated correctly, refreshing the dashboard in a few seconds..."};
                             sessionStorage.setItem("spotify_token", refresh_token);
                             break;
                         case 401:
@@ -173,8 +173,8 @@ window.onload = function(){
     });
 
     spotifyButton.addEventListener("click", function(){
-        //steroid.spotify.get_code();
-        displayNotification({success: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
+        steroid.spotify.get_code();
+        //displayNotification({success: "Spotify integration is currently disabled. Tomorrow 24/11/2021 will resume activity at 16:00hs -3 UTC."});
     });
 
     refreshSpotify.addEventListener("click", function(){
@@ -256,8 +256,10 @@ window.onload = function(){
                 response = await steroid.spotify.request(splitted_url);
                 if (response.refresh_token !== undefined){
                     response = await steroid.spotify.update(response.refresh_token);
-                    if (response){
-                        displayNotification(response);
+                    displayNotification(response);
+                    if (response.success){
+                        document.getElementsByTagName("body")[0].style.pointerEvents = "none";
+                        setTimeout(() => {window.location.href = "/dashboard.html";}, 4000);
                     }
                 }
             }
