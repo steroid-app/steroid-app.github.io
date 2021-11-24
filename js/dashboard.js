@@ -173,11 +173,11 @@ window.onload = function(){
     });
 
     spotifyButton.addEventListener("click", function(){
-        steroid.spotify.get_code();
+        //steroid.spotify.get_code();
     });
 
     refreshSpotify.addEventListener("click", function(){
-        steroid.spotify.get_code();
+        //steroid.spotify.get_code();
     });
 
     weatherAPIShowButton.addEventListener("click", function(){
