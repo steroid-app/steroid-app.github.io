@@ -272,8 +272,7 @@ window.onload = function(){
                     document.getElementById("password-repeat-warning").classList.add("is-hidden");
                     document.getElementById("submit-register-button").classList.add("is-loading");
                     document.getElementsByTagName("body")[0].style.pointerEvents = "none";
-                    //let response = await steroid.register(emailRegister.value, passwordRegister.value);
-                    let response = {error: steroid.errors.offline};
+                    let response = await steroid.register(emailRegister.value, passwordRegister.value);
                     if (response.error !== undefined){
                         document.getElementById("email-register-check").classList.add("is-hidden");
                         emailRegister.classList.remove("is-success");
