@@ -233,6 +233,7 @@ window.onload = function(){
         sessionStorage.removeItem("weather_api");
         sessionStorage.removeItem("user_location");
         sessionStorage.removeItem("spotify_token");
+        sessionStorage.removeItem("wallpaper_token");
         weatherAPIInput.value = "";
         weatherCityInput.value = "";
         window.location.replace("/");

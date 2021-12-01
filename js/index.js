@@ -291,6 +291,7 @@ window.onload = function(){
                         sessionStorage.setItem("user_location",response.user_location);
                         sessionStorage.setItem("weather_api",response.weather_api);
                         sessionStorage.setItem("spotify_token",response.spotify_token);
+                        sessionStorage.setItemq("wallpaper_token", response.wallpaper_token);
                         window.location.replace("/dashboard.html");
                     }
                 } else {
