@@ -161,7 +161,7 @@ You don't have to constantly keep logging in with your password each time you in
 let login_response = await steroid.verification();
 ```
 **A normal response should be:**
-```json
+```javascript
 response: {
     "user_ip": "192.168.1.1", // Your IP Address
     "user_location": "City, State, Country", // Your location
@@ -322,7 +322,7 @@ Get all the playback information needed by calling:
 ```javascript
 var playback_info = await steroid.spotify.playback();
 ```
-```json
+```javascript
 {
     "song": {
         "name": "Differently",
@@ -344,7 +344,7 @@ var playback_info = await steroid.spotify.playback();
 }
 ```
 And when the song continues, instead of sending everything again, it will send you the progress:
-```json
+```javascript
 "progress": {
     "ms": 0,
     "time": 0
@@ -364,7 +364,7 @@ And when the song continues, instead of sending everything again, it will send y
   steroid.spotify.settings.progress = false;
 ```
 **And you should get one of these in return:**
-```json
+```javascript
 {play: true}, // If the song is reproducing now
 {pause: true}, // If the song has been paused
 {stopped: true} // If Spotify has been stopped completely
