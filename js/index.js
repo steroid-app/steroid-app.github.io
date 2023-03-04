@@ -4,7 +4,7 @@ window.onload = function(){
         url: 'https://steroidapp.ddns.net/',
         header: {'Content-Type': 'application/x-www-form-urlencoded'},
         errors: {
-            offline: "Ooops, seems like Steroid's server is offline or under maintenance! Come back in a few minutes."
+            offline: "Steroid is currently under maintenance for 24 hours, service will be restored after Sunday 05/03/2023 3:00AM UTC-03, sorry for the inconvenience."
         },
         verification: async function(response){
             if (sessionStorage.getItem("session_token") != null && sessionStorage.getItem("user_id") != null){
