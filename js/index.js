@@ -281,7 +281,7 @@ window.onload = function(){
                         document.getElementById("submit-register-button").classList.remove("is-loading");
                         document.getElementById("submit-register-button").classList.add("is-danger");
                         document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
-                        response.code !== 401 ? displayNotification(response) : false;
+                        response.code !== 200 ? displayNotification(response) : false;
                     } else {
                         document.getElementById("submit-register-button").classList.remove("is-loading");
                         sessionStorage.setItem("user_id", emailRegister.value);
