@@ -195,7 +195,7 @@ window.onload = function(){
                     submitLogin.classList.add("is-danger");
                     document.getElementById("login-request-warning").classList.remove("is-hidden");
                     document.getElementsByTagName("body")[0].style.pointerEvents = "auto";
-                    response.code !== 401 ? displayNotification(response) : false;
+                    response.code !== 200 ? displayNotification(response) : false;
                 } else {
                     document.getElementById("submit-login-button").classList.remove("is-loading");
                     sessionStorage.setItem("user_id", emailLogin.value);
